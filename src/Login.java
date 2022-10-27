@@ -54,7 +54,7 @@ login.addActionListener(new ActionListener(){
              JOptionPane.showMessageDialog(login, "Login was succesful");
             
            
-         new Register();
+         new DashboardFrame();
          }
           if(!isCorrectUser){
              JOptionPane.showMessageDialog(login, "Login failed!");

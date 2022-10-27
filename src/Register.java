@@ -20,8 +20,9 @@ public class Register extends JFrame {
 
 
      Register() {
+          Connect connect= new Connect();
 
-      JButton jButton1= new JButton();
+      JButton jButton1= new JButton("Save details");
    JFormattedTextField  jFormattedTextField1= new JFormattedTextField ();
 JLabel jLabel1= new JLabel("First Name");
    JLabel jLabel2= new JLabel(" Last Name");
@@ -46,30 +47,26 @@ JTextField jTextField1= new JTextField();
                 jTextField2.setBounds(120,100,220,25);
                 jFormattedTextField1.setBounds(120,150,220,25);
                 jButton1.setBounds(120,200,80,30);
-   
-   jButton1.addActionListener(new ActionListener(){
+ EventQueue.invokeLater(new Runnable(){
+         public void run(){
+             jButton1.addActionListener(new ActionListener(){
+       
      public void actionPerformed(java.awt.event.ActionEvent evt) {                                         
          try{
             String firstName=jTextField1.getText();
             String lastName= jTextField2.getText();
             String Amount=jFormattedTextField1.getText();
-          Class.forName("com.mysql.jdbc.Driver");
-Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/DoubleA?","root","@iamLehcsma9");
+       Connection con= connect.connect_db();
 Statement stmt = con.createStatement(); 
 ResultSet rs; 
-String query="INSERT INTO members(firstName,lastName,Amount) VALUES("+firstName +","+ lastName +"," + Amount+");";
-rs = stmt.executeQuery(query);
+String query="INSERT INTO members VALUES( '" +firstName +"','"+ lastName +"'," + Amount+");";
 
+stmt.executeUpdate(query);
+ JOptionPane.showMessageDialog(jButton1, firstName +" registered succesfully");
+System.out.print("registered a new member");
  
-if(rs.next()){
-System.out.print("Succesfully registered a member");
- 
-}
-else{
-        System.out.print("incorrect credentials");
 
-           
-       }
+
    }
        catch(Exception e){
            e.printStackTrace();
@@ -79,7 +76,10 @@ else{
      
 
    }
-   );
+   );  
+         }});
+         
+ 
    
    this.setSize(400,400);
      this.setVisible(true);
