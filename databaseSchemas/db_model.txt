@@ -1,0 +1,62 @@
+
+// This is the code for creating the database designs
+// Run this code in your  dbdiagram.io account
+Table member {
+  memberId varchar(20) [not null, pk]
+  firstName varchar
+  lastName varchar
+  registrationFee int [default: 2000]
+  group varchar 
+}
+Ref: member.group < Group.groupID
+
+
+Table Group {
+  groupID varchar(20) [not null, pk]
+  
+  registrationFee int [default: 5000]
+
+  
+  
+}
+
+Table monthlyContributions {
+id varchar [pk]
+
+  amount int
+  
+  type enum ('group','individual')
+  contributedAT timestamp
+   
+}
+Ref: member.memberId < monthlyContributions.id
+Ref: Group.groupID < monthlyContributions.id
+
+
+Table Loans {
+id varchar [pk]
+  amount int
+  type enum ('group', 'individual')
+  borrowedAt timestamp
+  
+}
+Ref: Group.groupID < Loans.id
+Ref: member.memberId < Loans.id
+
+Table interests {
+  Amount int
+  id varchar [pk]
+  type enum ('group', 'individual')
+  
+}
+Ref: Group.groupID < interests.id
+Ref: member.memberId < interests.id
+
+Table dividends {
+  Amount int
+  id varchar [pk]
+  type enum ('group', 'individual')
+  
+}
+Ref: member.memberId < dividends.id
+Ref: Group.groupID < dividends.id
