@@ -3,6 +3,7 @@
 public final class LoginLogic {
     
    Connect connect= new Connect();
+   
     LoginLogic(String userName,String password){
         validate_login(userName,password);
        
