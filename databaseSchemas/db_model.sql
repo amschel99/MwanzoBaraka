@@ -37,7 +37,7 @@ CREATE TABLE `dividends` (
   `type` enum('group', 'individual')
 );
 
-ALTER TABLE `Group` ADD FOREIGN KEY (`groupID`) REFERENCES `member` (`group`);
+ALTER TABLE `member` ADD FOREIGN KEY (`group`) REFERENCES `Group` (`groupID`);
 
 ALTER TABLE `monthlyContributions` ADD FOREIGN KEY (`id`) REFERENCES `member` (`memberId`);
 
