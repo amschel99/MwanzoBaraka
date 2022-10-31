@@ -28,7 +28,7 @@ JLabel jLabel1= new JLabel(" First Name");
 JLabel jLabel2= new JLabel(" Last Name ");
 JLabel jLabel3= new JLabel(" ID number");
  
-    JLabel jLabel4= new JLabel("Group Id");
+  
   
   
 
@@ -40,7 +40,7 @@ JLabel jLabel3= new JLabel(" ID number");
 
 JTextField jTextField1= new JTextField();
 JTextField jTextField2= new JTextField();
-JTextField jTextField3= new JTextField();
+
 
    
    
@@ -50,12 +50,12 @@ JTextField jTextField3= new JTextField();
       
               jLabel2.setBounds(10,60,100,100);
                 jLabel3.setBounds(10,100,100,100);
-                 jLabel4.setBounds(10,160,100,100);
+              
                 jTextField1.setBounds(120,50,220,25);//fname
                    jTextField2.setBounds(120,100,220,25);//lastName
                
                 jFormattedTextField1.setBounds(120,140,220,25);//Id_number
-                  jTextField3.setBounds(120,200,220,25);//Group_Id
+            
                 
                
                 jButton1.setBounds(120,250,80,30);
@@ -70,12 +70,12 @@ JTextField jTextField3= new JTextField();
              String id_number= jFormattedTextField1.getText();
            
       
-            String GroupId=jTextField3.getText();
+           ;
        Connection con= connect.connect_db();
 Statement stmt = con.createStatement(); 
 ResultSet rs; 
-String query="";//TO DO WHEN I get back home 
-
+String query="INSERT INTO member (memberId,firstName,lastName) VALUES ('"+id_number +"','"+firstName+"','"+lastName+"');";//TO DO WHEN I get back home 
+System.out.print(query);
 stmt.executeUpdate(query);
  JOptionPane.showMessageDialog(jButton1, firstName +" registered succesfully");
 System.out.print("registered a new member");
@@ -103,10 +103,10 @@ System.out.print("registered a new member");
    this.add(jLabel1);
        this.add(jLabel2);
     this.add(jLabel3);
-    this.add(jLabel4);
+    
       this.add(jTextField1);
          this.add(jTextField2);
-            this.add(jTextField3);
+           
          this.add(jFormattedTextField1); 
                
          this.add(jButton1);
