@@ -2,11 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Group;
 
 
-import Group.Group;
+
+
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -153,10 +156,35 @@ public class Group extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
+            
+                 String groupId=jTextField1.getText();
+            String member1=jTextField2.getText();
+             String member2=jTextField3.getText();
+              String member3=jTextField4.getText();
+               String member4=jTextField5.getText();
+                String member5=jTextField6.getText();
+          
        Connect connect= new Connect();
             Connection con= connect.connect_db();
+            String query="INSERT INTO tbl_groups (groupID,member1,member2,member3,member4,member5) VALUES ('"+groupId+"','"+member1+"','"+member2+"','"+member3+"','"+member4+"','"+member5+"');";
+            Statement stmt = con.createStatement(); 
+ResultSet rs;
+System.out.print(query);
+stmt.executeUpdate(query);
+String query1="INSERT INTO member (memberId) VALUES ('"+member1 +"');";
+System.out.print(query1);
+stmt.executeUpdate(query1);
+//stmt.executeUpdate("INSERT INTO member (memberId) VALUES ('"+member2 +"');");
+//stmt.executeUpdate("INSERT INTO member (memberId) VALUES ('"+member3 +"');");
+//stmt.executeUpdate("INSERT INTO member (memberId) VALUES ('"+member4 +"');");
+//stmt.executeUpdate("INSERT INTO member (memberId) VALUES ('"+member5 +"');");
+ JOptionPane.showMessageDialog(jButton1, groupId +" registered succesfully");
+System.out.print("registered a new group");
+            
             
         } catch(Exception e){
+            
+                       e.printStackTrace();
             
         }
     }//GEN-LAST:event_jButton1ActionPerformed

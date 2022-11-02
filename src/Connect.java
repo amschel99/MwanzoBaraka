@@ -1,7 +1,8 @@
-package Group;
+
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
-
 
 public class Connect {
     Connect(){

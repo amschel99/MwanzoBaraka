@@ -8,33 +8,38 @@ CREATE TABLE `member` (
 
 CREATE TABLE `Group` (
   `groupID` varchar(20) PRIMARY KEY NOT NULL,
-  `registrationFee` int DEFAULT 5000
+  `registrationFee` int DEFAULT 5000,
+  `member1` varchar(255),
+  `member2` varchar(255),
+  `member3` varchar(255),
+  `member4` varchar(255),
+  `member5` varchar(255)
 );
 
 CREATE TABLE `monthlyContributions` (
   `id` varchar(255) PRIMARY KEY,
   `amount` int,
-  `type` enum('group', 'individual'),
+  `type` enum('group','individual'),
   `contributedAT` timestamp
 );
 
 CREATE TABLE `Loans` (
   `id` varchar(255) PRIMARY KEY,
   `amount` int,
-  `type` enum('group', 'individual'),
+  `type` enum('group','individual'),
   `borrowedAt` timestamp
 );
 
 CREATE TABLE `interests` (
   `Amount` int,
   `id` varchar(255) PRIMARY KEY,
-  `type` enum('group', 'individual')
+  `type` enum('group','individual')
 );
 
 CREATE TABLE `dividends` (
   `Amount` int,
   `id` varchar(255) PRIMARY KEY,
-  `type` enum('group', 'individual')
+  `type` enum('group','individual')
 );
 
 ALTER TABLE `member` ADD FOREIGN KEY (`group`) REFERENCES `Group` (`groupID`);
